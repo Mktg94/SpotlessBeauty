@@ -74,7 +74,7 @@ export default function OrdersPage() {
             <div className="space-y-4">
               {orders.map(order => (
                 <Link key={order._id} href={`/orders/${order._id}`}
-                  className="glass-card flex items-center gap-4 hover:shadow-md transition-all group no-underline block"
+                  className="glass-card flex items-center gap-4 hover:shadow-md transition-all group"
                   style={{ textDecoration: "none" }}>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 mb-1 flex-wrap">

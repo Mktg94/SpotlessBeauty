@@ -20,10 +20,7 @@ export default function Footer() {
                 { icon: <Share2 size={16} />, label: "Share" },
               ].map((s) => (
                 <a key={s.label} href="#" aria-label={s.label}
-                  className="w-8 h-8 rounded-full flex items-center justify-center transition-all"
-                  style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.6)" }}
-                  onMouseOver={e => (e.currentTarget.style.background = "rgba(255,255,255,0.15)")}
-                  onMouseOut={e => (e.currentTarget.style.background = "rgba(255,255,255,0.08)")}>
+                  className="footer-social-icon">
                   {s.icon}
                 </a>
               ))}
@@ -70,9 +67,9 @@ export default function Footer() {
           <div>
             <h3 className="font-bold text-sm uppercase tracking-widest mb-4" style={{ color: "rgba(255,255,255,0.9)" }}>Contact</h3>
             <ul className="space-y-2.5 text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
-              <li>📍 Bole, Addis Ababa, Ethiopia</li>
-              <li>📞 +251 911 000 000</li>
-              <li>✉️ hello@spotlessbeautylab.com</li>
+              <li>📍 Summit 20 Meter, Addis Ababa, Ethiopia</li>
+              <li>📞 +251 933 478 442</li>
+              <li>✉️ semirahaile8485@.com</li>
             </ul>
             <div className="mt-5">
               <p className="text-xs mb-2.5" style={{ color: "rgba(255,255,255,0.4)" }}>We Accept</p>
