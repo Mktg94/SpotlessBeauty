@@ -48,7 +48,7 @@ export default function ProductCard({
   return (
     <Link href={`/products/${slug}`} className="product-card group">
       {/* Image */}
-      <div className="relative aspect-square overflow-hidden rounded-t-xl bg-white/5">
+      <div className="relative aspect-square overflow-hidden rounded-t-xl" style={{background:"var(--cream-deep)"}}>
         {images[0] ? (
           <Image
             src={images[0]}
@@ -58,7 +58,7 @@ export default function ProductCard({
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-muted text-4xl">🧴</div>
+          <div className="w-full h-full flex items-center justify-center text-4xl" style={{background:"var(--cream-deep)", color:"var(--stone)"}}>🧴</div>
         )}
 
         {/* Badges */}
@@ -77,28 +77,25 @@ export default function ProductCard({
 
       {/* Info */}
       <div className="p-3 flex flex-col gap-1">
-        {brand && <p className="text-xs text-gold/80 font-medium">{brand}</p>}
-        <h3 className="text-sm font-semibold text-foreground line-clamp-2 leading-snug">{name}</h3>
+        {brand && <p className="text-xs font-semibold tracking-wide" style={{color:"var(--rose)"}}>  {brand}</p>}
+        <h3 className="text-sm font-semibold line-clamp-2 leading-snug" style={{color:"var(--charcoal)"}}>{name}</h3>
 
         {/* Rating */}
         <div className="flex items-center gap-1.5">
           <div className="flex items-center gap-0.5">
             {[...Array(5)].map((_, i) => (
-              <Star
-                key={i}
-                size={11}
-                className={i < Math.round(rating) ? "fill-gold text-gold" : "fill-muted/30 text-muted/30"}
-              />
+              <Star key={i} size={11}
+                style={i < Math.round(rating) ? {fill:"var(--gold)", color:"var(--gold)"} : {color:"var(--cream-deep)"}} />
             ))}
           </div>
-          <span className="text-xs text-muted">({numReviews})</span>
+          <span className="text-xs" style={{color:"var(--stone)"}} >({numReviews})</span>
         </div>
 
         {/* Price */}
         <div className="flex items-center gap-2 mt-1">
-          <span className="text-base font-bold text-gold">{formatETB(displayPrice)}</span>
+          <span className="text-base font-bold" style={{color:"var(--charcoal)"}}>{formatETB(displayPrice)}</span>
           {hasDiscount && (
-            <span className="text-xs text-muted line-through">{formatETB(price)}</span>
+            <span className="text-xs line-through" style={{color:"var(--stone)"}}>{formatETB(price)}</span>
           )}
         </div>
 

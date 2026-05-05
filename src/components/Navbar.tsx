@@ -22,7 +22,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 shrink-0">
           <span className="text-xl font-bold gradient-text">Spotless Beauty</span>
-          <span className="text-xs text-gold/70 font-medium tracking-widest uppercase hidden sm:block">Lab</span>
+          <span className="text-xs text-stone font-medium tracking-widest uppercase hidden sm:block">Lab</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -91,7 +91,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden border-t border-white/10 bg-navy/95 backdrop-blur-xl px-4 py-4 space-y-3">
+        <div className="md:hidden border-t border-black/5 bg-white/95 backdrop-blur-xl px-4 py-4 space-y-3">
           {navLinks.map((l) => (
             <Link
               key={l.href}

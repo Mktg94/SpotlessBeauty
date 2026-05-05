@@ -33,6 +33,7 @@ export default function ProductsPage() {
     maxPrice: "",
     sort: "createdAt",
     featured: searchParams.get("featured") ?? "",
+    skinType: "",
   });
 
   const fetchProducts = useCallback(async () => {
@@ -62,7 +63,7 @@ export default function ProductsPage() {
   }, []);
 
   const clearFilters = () => {
-    setFilters({ search: "", category: "", minPrice: "", maxPrice: "", sort: "createdAt", featured: "" });
+    setFilters({ search: "", category: "", minPrice: "", maxPrice: "", sort: "createdAt", featured: "", skinType: "" });
     setPage(1);
     router.replace("/products", { scroll: false });
   };
@@ -124,13 +125,26 @@ export default function ProductsPage() {
                     <option value="rating">Top Rated</option>
                   </select>
                 </div>
+                <div>
+                  <label className="input-label" htmlFor="skin-type-filter">Skin Type</label>
+                  <select id="skin-type-filter" className="input" value={filters.skinType}
+                    onChange={(e) => { setFilters(f => ({ ...f, skinType: e.target.value })); setPage(1); }}>
+                    <option value="">All Skin Types</option>
+                    <option value="dry">Dry</option>
+                    <option value="oily">Oily</option>
+                    <option value="combination">Combination</option>
+                    <option value="sensitive">Sensitive</option>
+                    <option value="normal">Normal</option>
+                    <option value="all">All Types</option>
+                  </select>
+                </div>
               </div>
             </aside>
 
             <div className="flex-1 min-w-0">
               {loading ? (
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                  {[...Array(9)].map((_, i) => <div key={i} className="skeleton aspect-[3/4] rounded-xl" />)}
+                  {[...Array(9)].map((_, i) => <div key={i} className="skeleton aspect-3/4 rounded-xl" />)}
                 </div>
               ) : products.length === 0 ? (
                 <div className="text-center py-20">

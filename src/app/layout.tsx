@@ -2,23 +2,21 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/providers/Providers";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   title: {
-    default: "Spotless Beauty Lab — Premium Skincare in Ethiopia",
+    default: "Spotless Beauty Lab — Authentic Skincare from USA & Korea",
     template: "%s | Spotless Beauty Lab",
   },
   description:
-    "Shop premium imported skincare and beauty products. Moisturizers, serums, cleansers & more delivered across Ethiopia.",
-  keywords: ["skincare", "beauty", "Ethiopia", "Addis Ababa", "moisturizer", "serum"],
+    "Shop 100% authentic imported skincare and beauty products from the USA and Korea. Moisturizers, serums, cleansers & more — delivered across Ethiopia.",
+  keywords: ["skincare", "beauty", "Ethiopia", "Korean skincare", "USA beauty", "Addis Ababa", "moisturizer", "serum"],
   openGraph: {
     title: "Spotless Beauty Lab",
-    description: "Premium imported skincare & beauty products in Ethiopia",
+    description: "Authentic imported skincare & beauty products in Ethiopia",
     type: "website",
   },
 };
@@ -28,7 +26,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={inter.variable}>
       <body className="min-h-screen flex flex-col">
         <Providers>{children}</Providers>
+        <WhatsAppButton />
       </body>
     </html>
   );
 }
+

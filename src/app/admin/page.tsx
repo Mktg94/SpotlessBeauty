@@ -80,7 +80,7 @@ export default function AdminDashboard() {
               { label: "Products", value: stats?.totalProducts ?? 0, icon: <Package size={20} className="text-purple-400" />, color: "from-purple-500/10" },
               { label: "Customers", value: stats?.totalUsers ?? 0, icon: <Users size={20} className="text-green-400" />, color: "from-green-500/10" },
             ].map((card) => (
-              <div key={card.label} className={`stat-card bg-gradient-to-br ${card.color} to-transparent`}>
+              <div key={card.label} className="stat-card">
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-muted uppercase tracking-wider">{card.label}</span>
                   {card.icon}
