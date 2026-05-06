@@ -103,8 +103,13 @@ export default function CheckoutPage() {
                     </div>
                     <div>
                       <label className="input-label" htmlFor="phone">Phone Number</label>
-                      <input id="phone" className="input" required placeholder="+251 9XX XXX XXX" value={shipping.phone}
+                      <input id="phone" className="input" required
+                        placeholder="+251911223344 or 0911223344"
+                        pattern="^(\+251[0-9]{9}|0[0-9]{9})$"
+                        title="Enter phone as +251XXXXXXXXX or 09XXXXXXXX"
+                        value={shipping.phone}
                         onChange={e => setShipping(s => ({ ...s, phone: e.target.value }))} />
+                      <p className="text-xs mt-1" style={{ color: "var(--stone)" }}>Format: +251911223344 or 0911223344</p>
                     </div>
                     <div>
                       <label className="input-label" htmlFor="city">City</label>

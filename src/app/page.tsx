@@ -91,9 +91,10 @@ export default async function Home() {
                   fill className="object-cover rounded-[40px] p-3"
                   priority
                 />
-                {/* Origin badge */}
-                <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl p-3 shadow-xl border border-black/5">
-                  <div className="flex items-center gap-2">
+                {/* Origin badge — improved visibility */}
+                <div className="absolute -bottom-6 -left-4 bg-white rounded-2xl p-3.5 z-10"
+                  style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.18)", border: "1px solid rgba(0,0,0,0.06)" }}>
+                  <div className="flex items-center gap-2.5">
                     <span className="text-2xl">🇺🇸🇰🇷</span>
                     <div>
                       <p className="text-xs font-bold" style={{ color: "var(--charcoal)" }}>USA &amp; Korean Brands</p>
@@ -101,13 +102,14 @@ export default async function Home() {
                     </div>
                   </div>
                 </div>
-                {/* Rating badge */}
-                <div className="absolute -top-3 -right-3 bg-white rounded-2xl p-3 shadow-xl border border-black/5">
-                  <div className="flex items-center gap-1">
-                    {[...Array(5)].map((_, i) => <Star key={i} size={12} style={{ fill: "var(--gold)", color: "var(--gold)" }} />)}
+                {/* Rating badge — improved visibility */}
+                <div className="absolute -top-4 -right-4 bg-white rounded-2xl p-3.5 z-10"
+                  style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.18)", border: "1px solid rgba(0,0,0,0.06)" }}>
+                  <div className="flex items-center gap-1 mb-0.5">
+                    {[...Array(5)].map((_, i) => <Star key={i} size={13} style={{ fill: "var(--gold)", color: "var(--gold)" }} />)}
                     <span className="text-xs font-bold ml-1" style={{ color: "var(--charcoal)" }}>4.9</span>
                   </div>
-                  <p className="text-xs" style={{ color: "var(--stone)" }}>2,400+ reviews</p>
+                  <p className="text-xs font-medium" style={{ color: "var(--stone)" }}>2,400+ reviews</p>
                 </div>
               </div>
             </div>

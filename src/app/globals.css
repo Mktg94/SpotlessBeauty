@@ -636,3 +636,116 @@ tr:hover td { background: var(--cream); }
   background: rgba(255,255,255,0.18);
   color: white;
 }
+
+/* ──────────────────────────────────────────────
+   MOBILE RESPONSIVENESS
+────────────────────────────────────────────── */
+
+/* Base mobile adjustments */
+@media (max-width: 767px) {
+
+  /* Layout */
+  .container { padding-inline: 1rem; }
+  .section { padding-block: 3rem; }
+
+  /* Typography */
+  .section-title { font-size: clamp(1.4rem, 6vw, 1.9rem); }
+
+  /* Navbar */
+  .navbar-glass .container { padding-inline: 1rem; }
+
+  /* Hero — stack vertically, text readable on mobile */
+  .hero-bg .container {
+    padding-block: 3rem;
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
+  .hero-bg h1 { font-size: clamp(1.6rem, 7vw, 2.2rem) !important; }
+  .hero-bg p  { font-size: 0.95rem !important; }
+
+  /* Trust badges strip */
+  .section:has(.grid-cols-2.md\\:grid-cols-4) .grid { gap: 1rem; }
+
+  /* Product cards — 2 columns always on mobile */
+  .grid.grid-cols-2 { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+
+  /* Category grid */
+  .grid.grid-cols-2.sm\\:grid-cols-3.lg\\:grid-cols-6 {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  /* Glass cards */
+  .glass-card { padding: 1rem; }
+
+  /* Buttons — full width stacks */
+  .hero-bg .flex.gap-3.flex-wrap { flex-direction: column; align-items: flex-start; }
+  .hero-bg .btn-primary,
+  .hero-bg .btn-outline { width: 100%; justify-content: center; }
+
+  /* Cart page — single column */
+  .grid.lg\\:grid-cols-3 { grid-template-columns: 1fr !important; }
+  .lg\\:col-span-2 { grid-column: span 1 !important; }
+
+  /* Checkout — single column */
+  .grid.sm\\:grid-cols-2 { grid-template-columns: 1fr !important; }
+
+  /* Admin sidebar — hide on mobile */
+  .admin-sidebar { display: none !important; }
+
+  /* Table — horizontal scroll */
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { min-width: 520px; }
+
+  /* Footer — stack columns */
+  .grid.grid-cols-1.md\\:grid-cols-4 { grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+  /* Order detail grid */
+  .grid.md\\:grid-cols-2 { grid-template-columns: 1fr; }
+
+  /* Auth pages — hide left panel on mobile */
+  .min-h-screen.flex .lg\\:flex { display: none !important; }
+
+  /* Status tracker */
+  .flex.items-start.gap-0 span { font-size: 0.6rem; }
+
+  /* Admin stat cards */
+  .grid.grid-cols-2.lg\\:grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
+
+  /* Product detail */
+  .grid.md\\:grid-cols-2 { grid-template-columns: 1fr; }
+  .grid.grid-cols-2.sm\\:grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
+
+  /* Testimonials */
+  .grid.sm\\:grid-cols-2.lg\\:grid-cols-4 { grid-template-columns: 1fr; }
+
+  /* Promo banner padding */
+  .rounded-3xl.p-8 { padding: 1.5rem !important; }
+
+  /* Touch targets — ensure minimum 44px */
+  .icon-btn { width: 44px; height: 44px; }
+  .btn-primary, .btn-gold, .btn-outline, .btn-rose, .btn-ghost {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  /* Input fields — bigger on mobile */
+  .input { font-size: 1rem; padding: 0.75rem 1rem; }
+
+  /* WhatsApp button positioning */
+  .whatsapp-btn { width: 52px; height: 52px; bottom: 1rem; right: 1rem; }
+}
+
+/* Tablet adjustments */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .grid.lg\\:grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid.sm\\:grid-cols-3.lg\\:grid-cols-6 { grid-template-columns: repeat(3, 1fr); }
+  .admin-sidebar { width: 180px; }
+  .section { padding-block: 4rem; }
+}
+
+/* Ensure hero section always has breathing room on all screens */
+@media (min-width: 768px) {
+  .hero-bg .container { padding-block: 5rem; }
+  .hero-bg .animate-fade-up { padding-right: 1rem; }
+}
