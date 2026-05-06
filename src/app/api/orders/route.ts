@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
     let userId = session.user.id;
     if (!userId && session.user.email) {
       const dbUser = await User.findOne({ email: session.user.email }).select("_id");
-      userId = dbUser?._id?.toString();
+      userId = dbUser?._id?.toString() ?? userId;
     }
 
     if (!userId) {
