@@ -90,7 +90,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs"
           style={{ borderTop: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.35)" }}>
-          <p>© {new Date().getFullYear()} Spotless Beauty Lab. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Spotless Skin Lab. All rights reserved.</p>
           <p>Made with 🌸 in Ethiopia &nbsp;·&nbsp; Authentic imports from 🇺🇸 USA &amp; 🇰🇷 Korea</p>
         </div>
       </div>
