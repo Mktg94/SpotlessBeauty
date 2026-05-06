@@ -36,14 +36,17 @@ export default function OrderDetailPage() {
   }, [id, session]);
 
   if (loading) return (
-    <><Navbar /><main className="flex-1 flex items-center justify-center py-32"><div className="spinner" /></main><Footer /></>
+    <><Navbar /><main className="flex-1 flex items-center justify-center py-32" style={{ background: "var(--cream)" }}><div className="spinner" /></main><Footer /></>
   );
 
   if (!order) return (
     <><Navbar />
-      <main className="flex-1 flex items-center justify-center py-32 text-center">
-        <div><p className="text-4xl mb-4">😕</p><h2 className="text-xl font-bold mb-4">Order not found</h2>
-          <Link href="/products" className="btn-gold">Continue Shopping</Link></div>
+      <main className="flex-1 flex items-center justify-center py-32 text-center" style={{ background: "var(--cream)" }}>
+        <div>
+          <p className="text-4xl mb-4">😕</p>
+          <h2 className="text-xl font-bold mb-4" style={{ color: "var(--charcoal)" }}>Order not found</h2>
+          <Link href="/products" className="btn-primary">Continue Shopping</Link>
+        </div>
       </main>
       <Footer /></>
   );
@@ -53,31 +56,38 @@ export default function OrderDetailPage() {
   return (
     <>
       <Navbar />
-      <main className="flex-1">
+      <main className="flex-1" style={{ background: "var(--cream)" }}>
         <div className="container mx-auto px-4 py-8 max-w-3xl">
+
           {/* Success Banner */}
-          <div className="glass-card text-center mb-8 border-green-500/20 bg-green-500/5">
-            <CheckCircle size={48} className="text-green-400 mx-auto mb-3" />
-            <h1 className="text-2xl font-bold text-foreground mb-1">Order Confirmed!</h1>
-            <p className="text-muted text-sm">Order #{order._id.slice(-8).toUpperCase()}</p>
-            <p className="text-xs text-muted mt-1">{new Date(order.createdAt).toLocaleString()}</p>
+          <div className="glass-card text-center mb-8"
+            style={{ borderColor: "rgba(22,163,74,0.2)", background: "rgba(22,163,74,0.04)" }}>
+            <CheckCircle size={48} className="mx-auto mb-3" style={{ color: "#16a34a" }} />
+            <h1 className="text-2xl font-bold mb-1" style={{ color: "var(--charcoal)" }}>Order Confirmed!</h1>
+            <p className="text-sm" style={{ color: "var(--stone)" }}>Order #{order._id.slice(-8).toUpperCase()}</p>
+            <p className="text-xs mt-1" style={{ color: "var(--stone)" }}>{new Date(order.createdAt).toLocaleString()}</p>
           </div>
 
           {/* Status Tracker */}
           {order.status !== "cancelled" && (
             <div className="glass-card mb-6">
-              <h2 className="font-bold text-foreground mb-4">Order Status</h2>
-              <div className="flex items-center gap-0">
+              <h2 className="font-bold mb-6" style={{ color: "var(--charcoal)" }}>Order Status</h2>
+              <div className="flex items-start gap-0">
                 {STATUS_STEPS.map((step, i) => (
-                  <div key={step} className="flex-1 flex flex-col items-center">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border-2 transition-all ${
-                      i <= currentStep ? "bg-gold border-gold text-navy" : "border-white/20 text-muted"
-                    }`}>
+                  <div key={step} className="flex-1 flex flex-col items-center relative">
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border-2 transition-all`}
+                      style={i <= currentStep
+                        ? { background: "var(--rose)", borderColor: "var(--rose)", color: "white" }
+                        : { background: "white", borderColor: "var(--border-soft)", color: "var(--stone)" }}>
                       {i < currentStep ? "✓" : i + 1}
                     </div>
-                    <span className={`text-xs mt-1 capitalize ${i <= currentStep ? "text-gold" : "text-muted"}`}>{step}</span>
+                    <span className="text-xs mt-1 capitalize"
+                      style={{ color: i <= currentStep ? "var(--rose)" : "var(--stone)" }}>
+                      {step}
+                    </span>
                     {i < STATUS_STEPS.length - 1 && (
-                      <div className={`absolute h-0.5 w-full top-4 left-1/2 ${i < currentStep ? "bg-gold" : "bg-white/10"}`} />
+                      <div className="absolute top-4 left-1/2 w-full h-0.5"
+                        style={{ background: i < currentStep ? "var(--rose)" : "var(--border-soft)" }} />
                     )}
                   </div>
                 ))}
@@ -86,48 +96,68 @@ export default function OrderDetailPage() {
           )}
 
           {order.status === "cancelled" && (
-            <div className="glass-card mb-6 border-red-500/20 bg-red-500/5">
-              <p className="text-red-400 font-medium text-center">This order has been cancelled.</p>
+            <div className="glass-card mb-6"
+              style={{ borderColor: "rgba(239,68,68,0.2)", background: "rgba(239,68,68,0.04)" }}>
+              <p className="font-medium text-center" style={{ color: "#dc2626" }}>This order has been cancelled.</p>
             </div>
           )}
 
           <div className="grid md:grid-cols-2 gap-6">
             {/* Items */}
             <div className="glass-card">
-              <h2 className="font-bold text-foreground mb-4 flex items-center gap-2"><Package size={16} /> Items Ordered</h2>
+              <h2 className="font-bold mb-4 flex items-center gap-2" style={{ color: "var(--charcoal)" }}>
+                <Package size={16} style={{ color: "var(--rose)" }} /> Items Ordered
+              </h2>
               <div className="space-y-3">
                 {order.items.map((item, i) => (
                   <div key={i} className="flex justify-between items-center text-sm">
                     <div>
-                      <p className="font-medium text-foreground">{item.name}</p>
-                      <p className="text-muted text-xs">Qty: {item.quantity} × {formatETB(item.price)}</p>
+                      <p className="font-medium" style={{ color: "var(--charcoal)" }}>{item.name}</p>
+                      <p className="text-xs" style={{ color: "var(--stone)" }}>Qty: {item.quantity} × {formatETB(item.price)}</p>
                     </div>
-                    <span className="text-gold font-semibold">{formatETB(item.price * item.quantity)}</span>
+                    <span className="font-semibold" style={{ color: "var(--rose)" }}>{formatETB(item.price * item.quantity)}</span>
                   </div>
                 ))}
-                <div className="border-t border-white/10 pt-3 space-y-1 text-sm">
-                  <div className="flex justify-between text-muted"><span>Subtotal</span><span>{formatETB(order.itemsPrice)}</span></div>
-                  <div className="flex justify-between text-muted"><span>Shipping</span><span>{order.shippingPrice === 0 ? <span className="text-green-400">Free</span> : formatETB(order.shippingPrice)}</span></div>
-                  <div className="flex justify-between font-bold text-foreground"><span>Total</span><span className="text-gold">{formatETB(order.totalPrice)}</span></div>
+                <div className="space-y-1 text-sm pt-3" style={{ borderTop: "1px solid var(--border-soft)" }}>
+                  <div className="flex justify-between" style={{ color: "var(--slate)" }}>
+                    <span>Subtotal</span><span>{formatETB(order.itemsPrice)}</span>
+                  </div>
+                  <div className="flex justify-between" style={{ color: "var(--slate)" }}>
+                    <span>Shipping</span>
+                    <span>{order.shippingPrice === 0
+                      ? <span style={{ color: "#16a34a", fontWeight: 600 }}>Free</span>
+                      : formatETB(order.shippingPrice)}
+                    </span>
+                  </div>
+                  <div className="flex justify-between font-bold" style={{ color: "var(--charcoal)" }}>
+                    <span>Total</span>
+                    <span style={{ color: "var(--rose)" }}>{formatETB(order.totalPrice)}</span>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Delivery Info */}
             <div className="glass-card">
-              <h2 className="font-bold text-foreground mb-4 flex items-center gap-2"><Truck size={16} /> Delivery Info</h2>
-              <div className="space-y-2 text-sm">
-                <div><span className="text-muted">Name: </span><span className="text-foreground">{order.shippingAddress.fullName}</span></div>
-                <div><span className="text-muted">Phone: </span><span className="text-foreground">{order.shippingAddress.phone}</span></div>
-                <div><span className="text-muted">City: </span><span className="text-foreground">{order.shippingAddress.city}</span></div>
-                <div><span className="text-muted">Sub-City: </span><span className="text-foreground">{order.shippingAddress.subCity}</span></div>
-                {order.shippingAddress.woreda && <div><span className="text-muted">Woreda: </span><span className="text-foreground">{order.shippingAddress.woreda}</span></div>}
+              <h2 className="font-bold mb-4 flex items-center gap-2" style={{ color: "var(--charcoal)" }}>
+                <Truck size={16} style={{ color: "var(--rose)" }} /> Delivery Info
+              </h2>
+              <div className="space-y-2 text-sm" style={{ color: "var(--charcoal)" }}>
+                <div><span style={{ color: "var(--stone)" }}>Name: </span>{order.shippingAddress.fullName}</div>
+                <div><span style={{ color: "var(--stone)" }}>Phone: </span>{order.shippingAddress.phone}</div>
+                <div><span style={{ color: "var(--stone)" }}>City: </span>{order.shippingAddress.city}</div>
+                <div><span style={{ color: "var(--stone)" }}>Sub-City: </span>{order.shippingAddress.subCity}</div>
+                {order.shippingAddress.woreda && (
+                  <div><span style={{ color: "var(--stone)" }}>Woreda: </span>{order.shippingAddress.woreda}</div>
+                )}
               </div>
-              <div className="border-t border-white/10 mt-4 pt-4 space-y-2 text-sm">
-                <div><span className="text-muted">Payment: </span>
-                  <span className="text-foreground">{order.paymentMethod === "cash_on_delivery" ? "Cash on Delivery" : "Telebirr"}</span>
+              <div className="space-y-2 text-sm mt-4 pt-4" style={{ borderTop: "1px solid var(--border-soft)" }}>
+                <div>
+                  <span style={{ color: "var(--stone)" }}>Payment: </span>
+                  <span style={{ color: "var(--charcoal)" }}>{order.paymentMethod === "cash_on_delivery" ? "Cash on Delivery" : "Telebirr"}</span>
                 </div>
-                <div><span className="text-muted">Status: </span>
+                <div>
+                  <span style={{ color: "var(--stone)" }}>Status: </span>
                   <span className={`status-pill ${STATUS_CLASS[order.status]}`}>{order.status}</span>
                 </div>
               </div>
@@ -135,8 +165,11 @@ export default function OrderDetailPage() {
           </div>
 
           <div className="flex gap-3 justify-center mt-8">
-            <Link href="/products" className="btn-gold flex items-center gap-2">
+            <Link href="/products" className="btn-primary flex items-center gap-2">
               Continue Shopping <ArrowRight size={14} />
+            </Link>
+            <Link href="/orders" className="btn-ghost">
+              My Orders
             </Link>
           </div>
         </div>

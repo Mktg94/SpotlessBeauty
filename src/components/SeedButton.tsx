@@ -3,7 +3,11 @@
 export default function SeedButton() {
   const handleSeed = async () => {
     try {
-      const res = await fetch("/api/seed", { method: "POST" });
+      const res = await fetch("/api/seed", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({}),
+      });
       const data = await res.json();
       if (res.ok) {
         alert(`✅ ${data.message}\n${data.productsCreated} products, ${data.categoriesCreated} categories created.`);

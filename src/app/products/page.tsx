@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { Suspense, useState, useEffect, useCallback } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
@@ -14,7 +14,7 @@ interface Product {
 }
 interface Category { _id: string; name: string; }
 
-export default function ProductsPage() {
+function ProductsContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -59,7 +59,10 @@ export default function ProductsPage() {
   useEffect(() => { fetchProducts(); }, [fetchProducts]);
 
   useEffect(() => {
-    fetch("/api/categories").then(r => r.json()).then(setCategories).catch(() => {});
+    fetch("/api/categories")
+      .then(r => r.json())
+      .then(data => setCategories(Array.isArray(data) ? data : []))
+      .catch(() => {});
   }, []);
 
   const clearFilters = () => {
@@ -181,5 +184,25 @@ export default function ProductsPage() {
       </main>
       <Footer />
     </>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={
+      <>
+        <Navbar />
+        <main className="flex-1">
+          <div className="container mx-auto px-4 py-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              {[...Array(9)].map((_, i) => <div key={i} className="skeleton aspect-3/4 rounded-xl" />)}
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </>
+    }>
+      <ProductsContent />
+    </Suspense>
   );
 }

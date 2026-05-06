@@ -5,10 +5,14 @@ import Product from "@/models/Product";
 import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
 
-// POST /api/seed — only run in development
-export async function POST() {
+// POST /api/seed — requires SEED_SECRET in production
+export async function POST(req: Request) {
+  // In production, require a secret token to prevent abuse
   if (process.env.NODE_ENV === "production") {
-    return Response.json({ error: "Not allowed in production" }, { status: 403 });
+    const body = await req.json().catch(() => ({}));
+    if (body?.secret !== process.env.SEED_SECRET) {
+      return Response.json({ error: "Invalid seed secret" }, { status: 403 });
+    }
   }
 
   try {
