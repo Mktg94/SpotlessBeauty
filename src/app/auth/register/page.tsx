@@ -25,7 +25,7 @@ export default function RegisterPage() {
       const data = await res.json();
       if (!res.ok) { toast.error(data.error ?? "Registration failed"); return; }
       await signIn("credentials", { email: form.email, password: form.password, redirect: false });
-      toast.success("Welcome to Spotless Beauty Lab! 🌸");
+      toast.success("Welcome to Spotless Skin Lab! 🌸");
       router.push("/");
     } finally { setLoading(false); }
   };

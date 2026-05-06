@@ -9,7 +9,7 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="md:col-span-1">
-            <h2 className="text-xl font-bold gradient-text mb-3">Spotless Beauty Lab</h2>
+            <h2 className="text-xl font-bold gradient-text mb-3">Spotless Skin Lab</h2>
             <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>
               Authentic imported skincare &amp; beauty products from USA &amp; Korea. Delivered across Ethiopia.
             </p>

@@ -34,7 +34,7 @@ function LoginForm() {
           backgroundImage: "radial-gradient(circle at 30% 40%, var(--blush) 0%, transparent 50%), radial-gradient(circle at 70% 70%, var(--gold) 0%, transparent 50%)"
         }} />
         <div className="relative text-center">
-          <h1 className="text-4xl font-bold gradient-text mb-4">Spotless Beauty Lab</h1>
+          <h1 className="text-4xl font-bold gradient-text mb-4">Spotless Skin Lab</h1>
           <p className="text-lg mb-2" style={{ color: "rgba(255,255,255,0.7)" }}>Authentic Skincare from USA &amp; Korea</p>
           <p className="text-sm" style={{ color: "rgba(255,255,255,0.45)" }}>Delivered to your door across Ethiopia 🇪🇹</p>
           <div className="mt-10 grid grid-cols-3 gap-3">
