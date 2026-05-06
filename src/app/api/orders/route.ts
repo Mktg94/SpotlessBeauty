@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Order from "@/models/Order";
+import User from "@/models/User";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 
@@ -55,9 +56,20 @@ export async function POST(req: NextRequest) {
     await connectDB();
     const body = await req.json();
 
+    // Resolve user ID robustly: from JWT token id or fallback to DB lookup by email
+    let userId = session.user.id;
+    if (!userId && session.user.email) {
+      const dbUser = await User.findOne({ email: session.user.email }).select("_id");
+      userId = dbUser?._id?.toString();
+    }
+
+    if (!userId) {
+      return Response.json({ error: "Could not resolve user identity" }, { status: 401 });
+    }
+
     const order = await Order.create({
       ...body,
-      user: session.user.id,
+      user: userId,
     });
 
     return Response.json(order, { status: 201 });

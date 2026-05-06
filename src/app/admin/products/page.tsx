@@ -182,7 +182,8 @@ export default function AdminProductsPage() {
       {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setShowModal(false)}>
-          <div className="bg-navy-mid border border-white/10 rounded-2xl p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+          <div className="bg-white rounded-2xl p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()}
+            style={{ border: "1px solid var(--border-soft)" }}>
             <div className="flex items-center justify-between mb-5">
               <h2 className="font-bold text-foreground">{editingId ? "Edit Product" : "Add Product"}</h2>
               <button onClick={() => setShowModal(false)} className="icon-btn"><X size={16} /></button>
@@ -213,7 +214,7 @@ export default function AdminProductsPage() {
                 <label className="input-label">Images</label>
                 <div className="flex flex-wrap gap-2 mb-2">
                   {form.images.map((img, i) => (
-                    <div key={i} className="relative w-16 h-16 rounded-lg overflow-hidden border border-white/10">
+                    <div key={i} className="relative w-16 h-16 rounded-lg overflow-hidden" style={{ border: "1px solid var(--border-soft)" }}>
                       <Image src={img} alt="product" fill className="object-cover" />
                       <button onClick={() => setForm(f => ({ ...f, images: f.images.filter((_, j) => j !== i) }))}
                         className="absolute top-0.5 right-0.5 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center text-white text-xs">×</button>
