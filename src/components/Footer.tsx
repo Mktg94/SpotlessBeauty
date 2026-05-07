@@ -80,8 +80,8 @@ export default function Footer() {
             <ul className="space-y-2.5 text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
               {[
                 { label: "Track Order", href: "/orders" },
-                { label: "Shipping Policy", href: "#" },
-                { label: "Returns & Refunds", href: "#" },
+                { label: "Delivery Policy (Addis Ababa)", href: "#" },
+                { label: "Authenticity Returns", href: "#" },
                 { label: "Contact Us", href: "#" },
                 { label: "FAQ", href: "#" },
               ].map(item => (

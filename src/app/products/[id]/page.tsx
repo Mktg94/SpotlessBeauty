@@ -12,7 +12,7 @@ import { useCart } from "@/components/providers/CartProvider";
 import { formatETB, getStars } from "@/lib/utils";
 import {
   ShoppingCart, Star, Minus, Plus, ArrowLeft, Zap,
-  CheckCircle, Send, Shield, Truck, RefreshCw, Package,
+  CheckCircle, Send, Shield, Truck, Package,
 } from "lucide-react";
 import toast from "react-hot-toast";
 
@@ -294,8 +294,8 @@ export default function ProductDetailPage() {
               <div style={{ padding: "0.875rem 1rem", background: "var(--cream-deep)", borderRadius: "var(--radius-md)", display: "flex", flexDirection: "column", gap: 8 }}>
                 {[
                   { icon: <Shield size={13} />, text: "100% Authentic — imported & verified" },
-                  { icon: <Truck size={13} />, text: "Free shipping on orders over 2,000 ETB" },
-                  { icon: <RefreshCw size={13} />, text: "7-day easy returns" },
+                  { icon: <Truck size={13} />, text: "Free delivery on orders over 20,000 ETB (Addis Ababa)" },
+                  { icon: <Shield size={13} />, text: "Authenticity Guarantee — return if not genuine" },
                   { icon: <Package size={13} />, text: "Secure checkout — Telebirr & Cash on Delivery" },
                 ].map(t => (
                   <div key={t.text} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: "0.8rem", color: "var(--slate)" }}>
