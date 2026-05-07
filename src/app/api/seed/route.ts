@@ -32,12 +32,15 @@ export async function POST(req: Request) {
 
     // Seed categories
     const categoryData = [
-      { name: "Moisturizers", slug: "moisturizers", image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400" },
-      { name: "Serums", slug: "serums", image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400" },
-      { name: "Cleansers", slug: "cleansers", image: "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=400" },
-      { name: "Sunscreens", slug: "sunscreens", image: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400" },
-      { name: "Eye Care", slug: "eye-care", image: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=400" },
-      { name: "Lip Care", slug: "lip-care", image: "https://images.unsplash.com/photo-1503236823255-94609f598e71?w=400" },
+      { name: "Moisturizers", slug: "moisturizers", description: "Face & body moisturizers", image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400" },
+      { name: "Serums", slug: "serums", description: "Targeted treatment serums", image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400" },
+      { name: "Cleansers", slug: "cleansers", description: "Gentle face cleansers", image: "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=400" },
+      { name: "Sunscreens", slug: "sunscreens", description: "SPF sun protection", image: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400" },
+      { name: "Eye Care", slug: "eye-care", description: "Eye creams & treatments", image: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=400" },
+      { name: "Lip Care", slug: "lip-care", description: "Lip balms & treatments", image: "https://images.unsplash.com/photo-1503236823255-94609f598e71?w=400" },
+      // Fashion Accessories — new categories
+      { name: "Women Bags", slug: "women-bags", description: "Luxury women handbags & totes", image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400" },
+      { name: "Luxury Scarfs", slug: "luxury-scarfs", description: "Premium scarves & wraps", image: "https://images.unsplash.com/photo-1601924287811-2046d44c5e3e?w=400" },
     ];
 
     const categories: { name: string; slug: string; _id: mongoose.Types.ObjectId }[] = [];

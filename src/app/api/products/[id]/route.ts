@@ -4,7 +4,7 @@ import Product from "@/models/Product";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 
-// GET /api/products/[id]
+// GET /api/products/[id]  — supports both slug and MongoDB _id
 export async function GET(
   _req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -13,9 +13,20 @@ export async function GET(
     await connectDB();
     const { id } = await params;
 
-    const product = await Product.findById(id)
+    // Try slug first (product cards link by slug), then fall back to _id
+    let product = await Product.findOne({ slug: id })
       .populate("category", "name slug")
       .lean();
+
+    if (!product) {
+      // Try MongoDB ObjectId (used by admin edit links)
+      const mongoose = (await import("mongoose")).default;
+      if (mongoose.Types.ObjectId.isValid(id)) {
+        product = await Product.findById(id)
+          .populate("category", "name slug")
+          .lean();
+      }
+    }
 
     if (!product) {
       return Response.json({ error: "Product not found" }, { status: 404 });
