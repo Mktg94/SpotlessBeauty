@@ -121,9 +121,9 @@ export default async function Home() {
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
-                { icon: <Truck size={20} style={{ color: "var(--rose)" }} />, title: "Free Delivery", desc: "Orders over 2,000 ETB" },
-                { icon: <Shield size={20} style={{ color: "var(--rose)" }} />, title: "100% Authentic", desc: "Guaranteed genuine products" },
-                { icon: <RefreshCw size={20} style={{ color: "var(--rose)" }} />, title: "Easy Returns", desc: "7-day return policy" },
+                { icon: <Truck size={20} style={{ color: "var(--rose)" }} />, title: "Delivery", desc: "Orders over 5,000 ETB" },
+                { icon: <Shield size={20} style={{ color: "var(--rose)" }} />, title: "Authentic", desc: "100% Genuine Imports" },
+                { icon: <Shield size={20} style={{ color: "var(--gold)" }} />, title: "Guarantee", desc: "Authenticity Verified" },
                 { icon: <Star size={20} style={{ color: "var(--rose)" }} />, title: "Top Rated", desc: "4.9★ customer rating" },
               ].map((item) => (
                 <div key={item.title} className="flex items-center gap-3">

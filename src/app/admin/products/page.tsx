@@ -7,7 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import { formatETB, slugify } from "@/lib/utils";
-import { Package, LayoutDashboard, ShoppingBag, Plus, Pencil, Trash2, Upload, X } from "lucide-react";
+import { Package, LayoutDashboard, ShoppingBag, Plus, Pencil, Trash2, Upload, X, Info } from "lucide-react";
 import toast from "react-hot-toast";
 
 interface Category { _id: string; name: string; }
@@ -193,7 +193,15 @@ export default function AdminProductsPage() {
               <div><label className="input-label">Description</label><textarea className="input min-h-20 resize-none" value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} /></div>
               <div className="grid grid-cols-2 gap-3">
                 <div><label className="input-label">Price (ETB) *</label><input className="input" type="number" value={form.price} onChange={e => setForm(f => ({ ...f, price: e.target.value }))} /></div>
-                <div><label className="input-label">Discount Price</label><input className="input" type="number" value={form.discountPrice} onChange={e => setForm(f => ({ ...f, discountPrice: e.target.value }))} /></div>
+                <div>
+                  <label className="input-label">Discount Price</label>
+                  <input className="input" type="number" value={form.discountPrice} onChange={e => setForm(f => ({ ...f, discountPrice: e.target.value }))} />
+                </div>
+              </div>
+              {/* Seasonal discount tip */}
+              <div style={{ display: "flex", gap: 8, padding: "0.6rem 0.75rem", background: "var(--blush-light)", borderRadius: "var(--radius-sm)", fontSize: "0.75rem", color: "var(--slate)" }}>
+                <Info size={13} style={{ color: "var(--rose)", flexShrink: 0, marginTop: 1 }} />
+                <span><strong>Seasonal / Discounted products:</strong> Set a <em>Discount Price</em> lower than the regular Price. The product will automatically show the discount badge and crossed-out original price in the store. Check <em>Featured</em> to include it in Best Sellers.</span>
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div><label className="input-label">Brand</label><input className="input" value={form.brand} onChange={e => setForm(f => ({ ...f, brand: e.target.value }))} /></div>
@@ -203,7 +211,12 @@ export default function AdminProductsPage() {
                 <label className="input-label" htmlFor="category-select">Category *</label>
                 <select id="category-select" className="input" value={form.category} onChange={e => setForm(f => ({ ...f, category: e.target.value }))}>
                   <option value="">Select category</option>
-                  {categories.map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
+                  <optgroup label="🌿 Skincare">
+                    {categories.filter(c => !["women-bags","luxury-scarfs"].includes(c.name.toLowerCase().replace(" ","-"))).map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
+                  </optgroup>
+                  <optgroup label="👜 Fashion Accessories">
+                    {categories.filter(c => ["Women Bags","Luxury Scarfs"].includes(c.name)).map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
+                  </optgroup>
                 </select>
               </div>
               <label className="flex items-center gap-2 cursor-pointer">

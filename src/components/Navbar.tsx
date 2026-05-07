@@ -70,15 +70,15 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1">
-            <Link href="/" className="nav-link px-3 py-2 rounded-lg hover:bg-cream-deep transition-colors">Home</Link>
+          <nav className="hidden md:flex items-center gap-3">
+            <Link href="/" className="nav-link px-4 py-2 rounded-lg hover:bg-cream-deep transition-colors">Home</Link>
 
             {/* Shop mega-menu trigger */}
             <div className="relative" ref={megaRef}>
               <button
                 id="shop-menu-btn"
                 onClick={() => setMegaOpen(o => !o)}
-                className="nav-link px-3 py-2 rounded-lg hover:bg-cream-deep transition-colors flex items-center gap-1"
+                className="nav-link px-4 py-2 rounded-lg hover:bg-cream-deep transition-colors flex items-center gap-1"
                 style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "inherit" }}
               >
                 Shop
@@ -125,7 +125,7 @@ export default function Navbar() {
               </div>
             </div>
 
-            <Link href="/products?featured=true" className="nav-link px-3 py-2 rounded-lg hover:bg-cream-deep transition-colors">Best Sellers</Link>
+            <Link href="/products?featured=true" className="nav-link px-4 py-2 rounded-lg hover:bg-cream-deep transition-colors">Best Sellers</Link>
           </nav>
 
           {/* Right Actions */}

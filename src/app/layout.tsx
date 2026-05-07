@@ -8,15 +8,15 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   title: {
-    default: "Spotless Skin Lab — Authentic Skincare from USA & Korea",
+    default: "Spotless Skin Lab — Beauty, Bags & Accessories from USA & Korea",
     template: "%s | Spotless Skin Lab",
   },
   description:
-    "Shop 100% authentic imported skincare and beauty products from the USA and Korea. Moisturizers, serums, cleansers & more — delivered across Ethiopia.",
-  keywords: ["skincare", "beauty", "Ethiopia", "Korean skincare", "USA beauty", "Addis Ababa", "moisturizer", "serum"],
+    "Shop 100% authentic imported skincare, luxury women bags & scarfs from the USA and Korea. Moisturizers, serums, cleansers & more — delivered across Ethiopia.",
+  keywords: ["skincare", "beauty", "Ethiopia", "Korean skincare", "USA beauty", "Addis Ababa", "women bags", "luxury scarfs", "fashion accessories", "moisturizer", "serum"],
   openGraph: {
     title: "Spotless Skin Lab",
-    description: "Authentic imported skincare & beauty products in Ethiopia",
+    description: "Authentic imported beauty & lifestyle products in Ethiopia",
     type: "website",
   },
 };
