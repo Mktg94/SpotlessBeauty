@@ -121,7 +121,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Telegram quick link */}
-                <a href="https://t.me/+251933478442"
+                <a href="https://t.me/spotlesssolutions22"
                   target="_blank" rel="noopener noreferrer"
                   className="btn-rose flex items-center justify-center gap-2"
                   style={{ textDecoration: "none", width: "100%" }}>
