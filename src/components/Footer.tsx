@@ -82,7 +82,7 @@ export default function Footer() {
                 { label: "Track Order", href: "/orders" },
                 { label: "Delivery Policy (Addis Ababa)", href: "#" },
                 { label: "Authenticity Returns", href: "#" },
-                { label: "Contact Us", href: "#" },
+                { label: "Contact Us", href: "/contact" },
                 { label: "FAQ", href: "#" },
               ].map(item => (
                 <li key={item.label}>
