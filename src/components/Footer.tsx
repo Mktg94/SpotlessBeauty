@@ -97,7 +97,7 @@ export default function Footer() {
             <div style={{ marginTop: "1.25rem" }}>
               <p style={{ fontSize: "0.72rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "rgba(255,255,255,0.4)", marginBottom: 8 }}>Contact</p>
               <ul className="space-y-1.5 text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>
-                <li>📍 Summit 20 Meter, Addis Ababa</li>
+                <li>📍 Summit 20 Meter Near Zemen Bank, Addis Ababa</li>
                 <li>📞 +251 933 478 442</li>
                 <li>✉️ semirahaile8485@gmail.com</li>
               </ul>

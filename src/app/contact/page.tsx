@@ -55,10 +55,10 @@ export default function ContactPage() {
                   <div>
                     <h3 style={{ fontWeight: 700, color: "var(--charcoal)", marginBottom: 4 }}>Visit Us</h3>
                     <p style={{ fontSize: "0.875rem", color: "var(--slate)", lineHeight: 1.6 }}>
-                      Summit 20 Meter<br />Addis Ababa, Ethiopia
+                      Summit 20 Meter, Near Zemen Bank<br />Addis Ababa, Ethiopia
                     </p>
                     <a
-                      href="https://maps.google.com/?q=Summit+Addis+Ababa"
+                      href="https://maps.app.goo.gl/VHPnqkocd4QMrVfA6"
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{ fontSize: "0.78rem", color: "var(--rose)", textDecoration: "none", marginTop: 4, display: "inline-block", fontWeight: 600 }}>
