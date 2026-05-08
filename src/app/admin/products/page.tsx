@@ -10,7 +10,7 @@ import { formatETB, slugify } from "@/lib/utils";
 import { Package, LayoutDashboard, ShoppingBag, Plus, Pencil, Trash2, Upload, X, Info } from "lucide-react";
 import toast from "react-hot-toast";
 
-interface Category { _id: string; name: string; }
+interface Category { _id: string; name: string; slug: string; }
 interface Product {
   _id: string; name: string; price: number; discountPrice?: number;
   images: string[]; stock: number; isFeatured: boolean; brand?: string;
@@ -209,15 +209,34 @@ export default function AdminProductsPage() {
               </div>
               <div>
                 <label className="input-label" htmlFor="category-select">Category *</label>
-                <select id="category-select" className="input" value={form.category} onChange={e => setForm(f => ({ ...f, category: e.target.value }))}>
-                  <option value="">Select category</option>
-                  <optgroup label="🌿 Skincare">
-                    {categories.filter(c => !["women-bags","luxury-scarfs"].includes(c.name.toLowerCase().replace(" ","-"))).map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
-                  </optgroup>
-                  <optgroup label="👜 Fashion Accessories">
-                    {categories.filter(c => ["Women Bags","Luxury Scarfs"].includes(c.name)).map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
-                  </optgroup>
-                </select>
+                {(() => {
+                  const FASHION_SLUGS = ["women-bags", "luxury-scarfs"];
+                  const skincareList = categories.filter(c => !FASHION_SLUGS.includes(c.slug));
+                  const fashionList  = categories.filter(c =>  FASHION_SLUGS.includes(c.slug));
+                  return (
+                    <>
+                      <select id="category-select" className="input" value={form.category}
+                        onChange={e => setForm(f => ({ ...f, category: e.target.value }))}>
+                        <option value="">Select category</option>
+                        {skincareList.length > 0 && (
+                          <optgroup label="🌿 Skincare">
+                            {skincareList.map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
+                          </optgroup>
+                        )}
+                        {fashionList.length > 0 && (
+                          <optgroup label="👜 Fashion Accessories">
+                            {fashionList.map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
+                          </optgroup>
+                        )}
+                      </select>
+                      {fashionList.length === 0 && (
+                        <p style={{ fontSize: "0.72rem", color: "var(--rose)", marginTop: 4, display: "flex", alignItems: "center", gap: 5 }}>
+                          <Info size={11} /> Fashion categories not found — visit <strong>/api/seed</strong> (POST) to add them.
+                        </p>
+                      )}
+                    </>
+                  );
+                })()}
               </div>
               <label className="flex items-center gap-2 cursor-pointer">
                 <input type="checkbox" className="accent-gold" checked={form.isFeatured} onChange={e => setForm(f => ({ ...f, isFeatured: e.target.checked }))} />
