@@ -65,7 +65,7 @@ export default function AdminOrdersPage() {
   return (
     <>
       <Navbar />
-      <div className="flex flex-1">
+      <div className="flex flex-1 relative">
         {/* Mobile menu button */}
         <button
           onClick={() => setSidebarOpen(true)}
@@ -74,8 +74,8 @@ export default function AdminOrdersPage() {
           <Menu size={20} />
         </button>
 
-        {/* Sidebar - mobile drawer */}
-        <aside className={`admin-sidebar flex flex-col p-4 gap-1 md:fixed md:inset-y-0 md:left-0 md:z-40 md:transform md:transition-transform md:duration-200 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}>
+        {/* Sidebar */}
+        <aside className={`admin-sidebar flex flex-col p-4 gap-1 fixed md:static inset-y-0 left-0 z-40 w-56 transform transition-transform duration-200 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}>
           <div className="flex items-center justify-between mb-2">
             <p className="text-xs font-semibold text-muted uppercase tracking-widest px-3">Admin</p>
             <button onClick={() => setSidebarOpen(false)} className="md:hidden p-1">
@@ -98,7 +98,7 @@ export default function AdminOrdersPage() {
           <div className="md:hidden fixed inset-0 bg-black/50 z-30" onClick={() => setSidebarOpen(false)} />
         )}
 
-        <main className="flex-1 p-6 overflow-auto">
+        <main className="flex-1 p-6 overflow-auto md:ml-0">
           <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
             <h1 className="text-2xl font-bold text-foreground">Orders</h1>
             <select id="orders-status-filter" className="input w-auto" value={statusFilter}
