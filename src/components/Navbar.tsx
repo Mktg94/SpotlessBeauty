@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
 import { useCart } from "@/components/providers/CartProvider";
 import {
@@ -65,8 +66,7 @@ export default function Navbar() {
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 shrink-0">
-            <span className="text-xl font-bold gradient-text">Spotless Skin</span>
-            <span className="text-xs font-medium tracking-widest uppercase hidden sm:block" style={{ color: "var(--stone)" }}>Lab</span>
+            <Image src="/logo.jpg" alt="Spotless Skin Lab" width={120} height={40} className="h-auto w-auto" style={{ maxHeight: '40px' }} />
           </Link>
 
           {/* Desktop Nav */}

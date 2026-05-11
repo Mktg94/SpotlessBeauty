@@ -7,7 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import { formatETB, slugify } from "@/lib/utils";
-import { Package, LayoutDashboard, ShoppingBag, Plus, Pencil, Trash2, Upload, X, Info } from "lucide-react";
+import { Package, LayoutDashboard, ShoppingBag, Plus, Pencil, Trash2, Upload, X, Info, Menu } from "lucide-react";
 import toast from "react-hot-toast";
 
 interface Category { _id: string; name: string; slug: string; }
@@ -27,6 +27,7 @@ export default function AdminProductsPage() {
   const [showModal, setShowModal] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const emptyForm = { name: "", description: "", price: "", discountPrice: "", brand: "", stock: "0", category: "", isFeatured: false, images: [] as string[] };
   const [form, setForm] = useState(emptyForm);
@@ -120,8 +121,22 @@ export default function AdminProductsPage() {
     <>
       <Navbar />
       <div className="flex flex-1">
-        <aside className="admin-sidebar hidden md:flex flex-col p-4 gap-1">
-          <p className="text-xs font-semibold text-muted uppercase tracking-widest px-3 mb-2">Admin</p>
+        {/* Mobile menu button */}
+        <button
+          onClick={() => setSidebarOpen(true)}
+          className="md:hidden fixed top-20 left-4 z-50 p-2 bg-background border rounded-md shadow-lg"
+        >
+          <Menu size={20} />
+        </button>
+
+        {/* Sidebar - mobile drawer */}
+        <aside className={`admin-sidebar fixed inset-y-0 left-0 z-40 flex flex-col p-4 gap-1 transform transition-transform duration-200 md:hidden ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:flex`}>
+          <div className="flex items-center justify-between mb-2">
+            <p className="text-xs font-semibold text-muted uppercase tracking-widest px-3">Admin</p>
+            <button onClick={() => setSidebarOpen(false)} className="md:hidden p-1">
+              <X size={18} />
+            </button>
+          </div>
           {[
             { href: "/admin", label: "Dashboard", icon: <LayoutDashboard size={16} /> },
             { href: "/admin/products", label: "Products", icon: <Package size={16} />, active: true },
@@ -132,6 +147,11 @@ export default function AdminProductsPage() {
             </Link>
           ))}
         </aside>
+
+        {/* Mobile overlay */}
+        {sidebarOpen && (
+          <div className="md:hidden fixed inset-0 bg-black/50 z-30" onClick={() => setSidebarOpen(false)} />
+        )}
 
         <main className="flex-1 p-6 overflow-auto">
           <div className="flex items-center justify-between mb-6">

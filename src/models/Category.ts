@@ -5,6 +5,7 @@ export interface ICategory extends Document {
   slug: string;
   description?: string;
   image?: string;
+  parent?: string;
 }
 
 const CategorySchema = new Schema<ICategory>(
@@ -13,6 +14,7 @@ const CategorySchema = new Schema<ICategory>(
     slug: { type: String, required: true, unique: true, lowercase: true },
     description: { type: String },
     image: { type: String },
+    parent: { type: String, default: null },
   },
   { timestamps: true }
 );

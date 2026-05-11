@@ -38,9 +38,10 @@ export async function POST(req: Request) {
       { name: "Sunscreens", slug: "sunscreens", description: "SPF sun protection", image: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400" },
       { name: "Eye Care", slug: "eye-care", description: "Eye creams & treatments", image: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=400" },
       { name: "Lip Care", slug: "lip-care", description: "Lip balms & treatments", image: "https://images.unsplash.com/photo-1503236823255-94609f598e71?w=400" },
-      // Fashion Accessories — new categories
-      { name: "Women Bags", slug: "women-bags", description: "Luxury women handbags & totes", image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400" },
-      { name: "Luxury Scarfs", slug: "luxury-scarfs", description: "Premium scarves & wraps", image: "https://images.unsplash.com/photo-1601924287811-2046d44c5e3e?w=400" },
+      // Fashion category with subcategories
+      { name: "Fashion", slug: "fashion", description: "Fashion accessories", image: "https://images.unsplash.com/photo-1445205170230-053b83016050?w=400" },
+      { name: "Women Bags", slug: "women-bags", description: "Luxury women handbags & totes", image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400", parent: "fashion" as string },
+      { name: "Luxury Scarfs", slug: "luxury-scarfs", description: "Premium scarves & wraps", image: "https://images.unsplash.com/photo-1601924287811-2046d44c5e3e?w=400", parent: "fashion" as string },
     ];
 
     const categories: { name: string; slug: string; _id: mongoose.Types.ObjectId }[] = [];
