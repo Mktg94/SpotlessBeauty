@@ -69,7 +69,7 @@ export default function AdminOrdersPage() {
         {/* Mobile menu button */}
         <button
           onClick={() => setSidebarOpen(true)}
-          className="md:hidden fixed top-20 left-4 z-50 p-2 bg-background border rounded-md shadow-lg"
+          className="md:hidden fixed top-20 left-4 z-60 p-2 bg-background border rounded-md shadow-lg"
         >
           <Menu size={20} />
         </button>
