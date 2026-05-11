@@ -39,9 +39,9 @@ const CATEGORY_IMAGES: Record<string, string> = {
 
 const TESTIMONIALS = [
   { name: "Hana T.", location: "Addis Ababa", rating: 5, text: "I've been using the Vitamin C serum for 3 months and my skin has never looked brighter. Totally authentic — exactly what I ordered!", avatar: "HT" },
-  { name: "Meron A.", location: "Hawassa", rating: 5, text: "Fast delivery and the products are genuinely imported. The CeraVe cleanser changed my skincare routine completely. Highly recommend!", avatar: "MA" },
-  { name: "Sara B.", location: "Dire Dawa", rating: 5, text: "Finally a place in Ethiopia where I can trust the products are real. The La Roche-Posay sunscreen is incredible for our climate.", avatar: "SB" },
-  { name: "Tigist K.", location: "Bahir Dar", rating: 4, text: "Great selection and customer service. Love that they carry Korean skincare brands. Will definitely order again!", avatar: "TK" },
+  { name: "Meron A.", location: "Addis Ababa", rating: 5, text: "Fast delivery and the products are genuinely imported. The CeraVe cleanser changed my skincare routine completely. Highly recommend!", avatar: "MA" },
+  { name: "Sara B.", location: "Addis Ababa", rating: 5, text: "Finally a place in Ethiopia where I can trust the products are real. The La Roche-Posay sunscreen is incredible for our climate.", avatar: "SB" },
+  { name: "Tigist K.", location: "Addis Ababa", rating: 4, text: "Great selection and customer service. Love that they carry Korean skincare brands. Will definitely order again!", avatar: "TK" },
 ];
 
 export default async function Home() {
@@ -60,93 +60,127 @@ export default async function Home() {
       <main className="flex-1">
 
         {/* ── HERO ─────────────────────────────────────────────────── */}
-        <section className="hero-bg relative overflow-hidden">
-          {/* Decorative blobs */}
-          <div style={{ position: "absolute", top: "-80px", right: "-80px", width: 400, height: 400, borderRadius: "50%", background: "var(--blush-light)", opacity: 0.5, filter: "blur(60px)", pointerEvents: "none" }} />
-          <div style={{ position: "absolute", bottom: "-60px", left: "-40px", width: 300, height: 300, borderRadius: "50%", background: "var(--gold-light)", opacity: 0.3, filter: "blur(50px)", pointerEvents: "none" }} />
+        <section className="relative overflow-hidden" style={{ minHeight: "85vh", background: "linear-gradient(135deg, #fdfbf9 0%, #faf6f4 50%, #fef9f6 100%)" }}>
+          {/* Geometric background pattern */}
+          <div style={{ position: "absolute", inset: 0, opacity: 0.4 }}>
+            <svg style={{ width: "100%", height: "100%" }} viewBox="0 0 100 100" preserveAspectRatio="none">
+              <defs>
+                <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                  <circle cx="1" cy="1" r="0.5" fill="var(--rose)" opacity="0.1"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+          </div>
+          {/* Floating orbs */}
+          <div style={{ position: "absolute", top: "10%", right: "5%", width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle, rgba(181,103,109,0.15) 0%, transparent 70%)", filter: "blur(40px)", animation: "float 8s ease-in-out infinite" }} />
+          <div style={{ position: "absolute", bottom: "15%", left: "3%", width: 200, height: 200, borderRadius: "50%", background: "radial-gradient(circle, rgba(201,169,106,0.12) 0%, transparent 70%)", filter: "blur(35px)", animation: "float 10s ease-in-out infinite reverse" }} />
 
-          <div className="container mx-auto px-4 py-20 md:py-32 grid md:grid-cols-2 gap-12 items-center" style={{ position: "relative" }}>
-            <div className="animate-fade-up">
-              {/* Pill badge */}
-              <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border rounded-full px-4 py-1.5 mb-6"
-                style={{ borderColor: "rgba(181,103,109,0.2)" }}>
-                <span className="w-2 h-2 rounded-full animate-pulse inline-block" style={{ background: "var(--rose)" }} />
-                <span className="text-xs font-semibold tracking-wide" style={{ color: "var(--slate)" }}>100% Authentic • Imported Direct</span>
+          <div className="container mx-auto px-4 py-16 md:py-24 grid lg:grid-cols-2 gap-16 items-center" style={{ position: "relative", minHeight: "inherit" }}>
+            <div className="animate-fade-up" style={{ maxWidth: 560 }}>
+              {/* Elegant badge */}
+              <div className="inline-flex items-center gap-2.5 border rounded-full px-5 py-2 mb-8"
+                style={{ borderColor: "rgba(181,103,109,0.15)", background: "rgba(255,255,255,0.7)", backdropFilter: "blur(10px)" }}>
+                <span className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--rose)" }} />
+                <span className="text-xs font-medium tracking-wider uppercase" style={{ color: "var(--rose)" }}>Premium Beauty & Fashion</span>
               </div>
 
-              <h1 className="section-title mb-4">
-                Authentic Korean &amp; US<br />
-                <span className="gradient-text">Beauty Products</span>
+              <h1 className="mb-6" style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)", fontWeight: 800, lineHeight: 1.15, color: "var(--charcoal)" }}>
+                Discover Your
+                <span className="gradient-text" style={{ display: "block" }}>Natural Glow</span>
               </h1>
-              <p style={{ color: "var(--slate)", fontSize: "1.05rem", lineHeight: 1.7, marginBottom: "1.5rem", maxWidth: 460 }}>
-                Shop genuine imported skincare, bags &amp; accessories — the same brands you love online, now delivered across Ethiopia.
+              <p style={{ color: "var(--stone)", fontSize: "1.125rem", lineHeight: 1.75, marginBottom: "2rem", maxWidth: 480 }}>
+                Curated collection of authentic Korean & US skincare, plus elegant fashion accessories. Imported directly to Ethiopia.
               </p>
 
-              {/* Origin pills */}
-              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: "1.75rem" }}>
+              {/* Modern pill badges */}
+              <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: "2rem" }}>
                 {[
-                  { flag: "🇺🇸", label: "Imported from USA" },
-                  { flag: "🇰🇷", label: "Imported from Korea" },
+                  { icon: "🌿", label: "Cruelty Free" },
+                  { icon: "✓", label: "100% Authentic" },
+                  { icon: "🚀", label: "Fast Delivery" },
                 ].map(b => (
                   <span key={b.label} style={{
-                    display: "inline-flex", alignItems: "center", gap: 6,
-                    background: "white", border: "1px solid var(--border-soft)",
-                    borderRadius: 99, padding: "5px 14px",
-                    fontSize: "0.8rem", fontWeight: 600, color: "var(--charcoal)",
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.05)"
+                    display: "inline-flex", alignItems: "center", gap: 8,
+                    background: "white", border: "1px solid rgba(0,0,0,0.06)",
+                    borderRadius: 100, padding: "8px 16px",
+                    fontSize: "0.85rem", fontWeight: 500, color: "var(--charcoal)",
+                    boxShadow: "0 2px 12px rgba(0,0,0,0.04)"
                   }}>
-                    <span style={{ fontSize: "1rem" }}>{b.flag}</span> {b.label}
+                    <span>{b.icon}</span> {b.label}
                   </span>
                 ))}
               </div>
 
               {/* CTAs */}
-              <div className="flex gap-3 flex-wrap">
-                <Link href="/products" className="btn-primary text-base px-7 py-3 flex items-center gap-2">
-                  Shop Now <ArrowRight size={16} />
+              <div className="flex gap-4 flex-wrap">
+                <Link href="/products" className="btn-primary text-base px-8 py-3.5 flex items-center gap-2.5 font-semibold">
+                  Shop Now <ArrowRight size={18} />
                 </Link>
-                <Link href="/products?featured=true" className="btn-outline text-base px-7 py-3">
-                  Best Sellers
+                <Link href="/products?featured=true" style={{
+                  display: "inline-flex", alignItems: "center", gap: 8,
+                  padding: "14px 28px", fontSize: "1rem", fontWeight: 500,
+                  borderRadius: "var(--radius)", border: "1.5px solid var(--charcoal)",
+                  color: "var(--charcoal)", background: "transparent",
+                  transition: "all 0.2s"
+                }}>
+                  Explore Collection
                 </Link>
               </div>
 
-              {/* Mini trust row */}
-              <div style={{ display: "flex", gap: 20, marginTop: "1.5rem", flexWrap: "wrap" }}>
-                {["Cruelty Free", "Genuine Imports", "Fast Delivery"].map(t => (
-                  <div key={t} style={{ display: "flex", alignItems: "center", gap: 6, fontSize: "0.82rem", color: "var(--slate)" }}>
-                    <CheckCircle size={13} style={{ color: "var(--rose)" }} /> {t}
+              {/* Trust indicators */}
+              <div style={{ display: "flex", alignItems: "center", gap: 24, marginTop: "2.5rem", paddingTop: "1.5rem", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <div style={{ display: "flex" }}>
+                    {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="var(--gold)" color="var(--gold)" />)}
                   </div>
-                ))}
+                  <span className="text-sm font-semibold" style={{ color: "var(--charcoal)" }}>4.9</span>
+                </div>
+                <span style={{ color: "var(--stone)", fontSize: "0.9rem" }}>2,400+ happy customers</span>
               </div>
             </div>
 
-            {/* Hero image */}
-            <div className="relative hidden md:block">
-              <div className="relative w-full aspect-square max-w-lg mx-auto">
-                <div className="absolute inset-0 rounded-[40px] bg-white/60 shadow-2xl border border-white" style={{ backdropFilter: "blur(8px)" }} />
-                <Image
-                  src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=700"
-                  alt="Authentic skincare products from USA and Korea"
-                  fill className="object-cover rounded-[40px] p-3"
-                  priority
-                />
-                <div className="absolute -bottom-6 -left-4 bg-white rounded-2xl p-3.5 z-10"
-                  style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.18)", border: "1px solid rgba(0,0,0,0.06)" }}>
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-2xl">🇺🇸🇰🇷</span>
+            {/* Hero image - modern floating card */}
+            <div className="relative hidden lg:block" style={{ perspective: "1000px" }}>
+              <div className="relative" style={{
+                transform: "rotateY(-5deg) rotateX(5deg)",
+                transition: "transform 0.5s ease"
+              }}>
+                {/* Main image container */}
+                <div className="relative aspect-4/5 max-w-md mx-auto" style={{
+                  borderRadius: "32px",
+                  overflow: "hidden",
+                  boxShadow: "0 40px 80px rgba(0,0,0,0.15), 0 20px 40px rgba(181,103,109,0.1)"
+                }}>
+                  <Image
+                    src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800"
+                    alt="Premium skincare collection"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                  {/* Overlay gradient */}
+                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.2) 0%, transparent 40%)" }} />
+                </div>
+
+                {/* Floating badge - repositioned */}
+                <div style={{
+                  position: "absolute", bottom: 30, right: -20,
+                  background: "white", borderRadius: "20px", padding: "16px 20px",
+                  boxShadow: "0 12px 40px rgba(0,0,0,0.12)"
+                }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                    <div style={{
+                      width: 40, height: 40, borderRadius: "12px",
+                      background: "linear-gradient(135deg, var(--rose) 0%, var(--blush) 100%)",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      color: "white", fontSize: "1.2rem"
+                    }}>✨</div>
                     <div>
-                      <p className="text-xs font-bold" style={{ color: "var(--charcoal)" }}>USA &amp; Korean Brands</p>
-                      <p className="text-xs" style={{ color: "var(--stone)" }}>Verified &amp; Imported</p>
+                      <p className="text-sm font-bold" style={{ color: "var(--charcoal)" }}>New Arrivals</p>
+                      <p className="text-xs" style={{ color: "var(--stone)" }}>Updated daily</p>
                     </div>
                   </div>
-                </div>
-                <div className="absolute -top-4 -right-4 bg-white rounded-2xl p-3.5 z-10"
-                  style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.18)", border: "1px solid rgba(0,0,0,0.06)" }}>
-                  <div className="flex items-center gap-1 mb-0.5">
-                    {[...Array(5)].map((_, i) => <Star key={i} size={13} style={{ fill: "var(--gold)", color: "var(--gold)" }} />)}
-                    <span className="text-xs font-bold ml-1" style={{ color: "var(--charcoal)" }}>4.9</span>
-                  </div>
-                  <p className="text-xs font-medium" style={{ color: "var(--stone)" }}>2,400+ reviews</p>
                 </div>
               </div>
             </div>
