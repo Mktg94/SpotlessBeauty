@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { formatETB } from "@/lib/utils";
-import { LayoutDashboard, Package, ShoppingBag, Users, TrendingUp, Eye, Menu, X } from "lucide-react";
+import { LayoutDashboard, Package, ShoppingBag, Users, TrendingUp, Eye, Menu, X, Database } from "lucide-react";
 
 interface Stats {
   totalUsers: number; totalProducts: number; totalOrders: number; revenue: number;
@@ -24,6 +24,23 @@ export default function AdminDashboard() {
   const [stats, setStats] = useState<Stats | null>(null);
   const [loading, setLoading] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [seeding, setSeeding] = useState(false);
+
+  const handleSeedDatabase = async () => {
+    if (!confirm("This will add sample categories and products. Continue?")) return;
+    setSeeding(true);
+    try {
+      const res = await fetch("/api/seed", { method: "POST" });
+      const data = await res.json();
+      if (res.ok) {
+        alert("Database seeded successfully!");
+        window.location.reload();
+      } else {
+        alert("Seed failed: " + (data.error || "Unknown error"));
+      }
+    } catch { alert("Seed failed"); }
+    finally { setSeeding(false); }
+  };
 
   useEffect(() => {
     if (status === "unauthenticated" || (session && session.user?.role !== "admin")) {
@@ -113,7 +130,12 @@ export default function AdminDashboard() {
           <div>
             <div className="flex items-center justify-between mb-4">
               <h2 className="font-bold text-foreground">Recent Orders</h2>
-              <Link href="/admin/orders" className="text-sm text-gold hover:underline">View all</Link>
+              <div className="flex gap-2">
+                <button onClick={handleSeedDatabase} disabled={seeding} className="text-sm px-3 py-1.5 bg-rose/10 text-rose rounded-lg hover:bg-rose/20 flex items-center gap-1.5">
+                  <Database size={14} /> {seeding ? "Seeding..." : "Seed Database"}
+                </button>
+                <Link href="/admin/orders" className="text-sm text-gold hover:underline">View all</Link>
+              </div>
             </div>
             <div className="table-wrap">
               <table>
